@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.android.slotmachine.MainActivity"
+    android:layout_margin="10dp">
+
+    <LinearLayout
+        android:id="@+id/shapes"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingTop="80dp">
+
+        <ImageView
+            android:id="@+id/shape1"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:background="@drawable/image_background"
+            android:layout_marginRight="30dp"
+            android:padding="10dp"/>
+
+        <ImageView
+            android:id="@+id/shape2"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:background="@drawable/image_background"
+            android:layout_marginRight="30dp"
+            android:padding="10dp"/>
+
+        <ImageView
+            android:id="@+id/shape3"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:background="@drawable/image_background"
+            android:padding="10dp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/points"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/shapes"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:padding="40dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/output_points"
+            android:textSize="40sp"
+            android:layout_centerHorizontal="true"/>
+
+        <TextView
+            android:id="@+id/outputPoints"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textSize="40sp"/>
+
+    </LinearLayout>
+
+    <SeekBar
+        android:id="@+id/seekbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/points"
+        android:padding="20dp"
+        android:max="3"/>
+
+    <Button
+        android:id="@+id/startButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/start_button"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/seekbar"
+        android:onClick="startButtonPressed"/>
+
+    <Button
+        android:id="@+id/rulesButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/rules_button"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/startButton"
+        android:onClick="rulesButtonPressed"/>
+
+</RelativeLayout>
