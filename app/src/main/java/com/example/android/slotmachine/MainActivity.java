@@ -7,6 +7,9 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -29,6 +32,8 @@ public class MainActivity extends AppCompatActivity {
     private int counter1;
     private int counter2;
     private int counter3;
+    private int x;
+    final Random rand = new Random();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,9 +59,9 @@ public class MainActivity extends AppCompatActivity {
                 new SeekBar.OnSeekBarChangeListener() {
                     @Override
                     public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
-                        shape1speed=(seekbar.getProgress()+1)*3;
-                        shape2speed=(seekbar.getProgress()+1)*2;
-                        shape3speed=(seekbar.getProgress()+1)*1;
+                        shape1speed=(seekbar.getProgress()+1)*rand.nextInt(3)+1;
+                        shape2speed=(seekbar.getProgress()+1)*rand.nextInt(3)+1;
+                        shape3speed=(seekbar.getProgress()+1)*rand.nextInt(3)+1;
                     }
 
                     @Override
@@ -80,6 +85,9 @@ public class MainActivity extends AppCompatActivity {
     public void startButtonPressed(View v) {
         if (stopped==true) {
             startButton.setText("STOP");
+            shape1speed=(seekbar.getProgress()+1)*rand.nextInt(3)+1;
+            shape2speed=(seekbar.getProgress()+1)*rand.nextInt(3)+1;
+            shape3speed=(seekbar.getProgress()+1)*rand.nextInt(3)+1;
             handler.postDelayed(update1,shape1speed*100);
             handler.postDelayed(update2, shape2speed*100);
             handler.postDelayed(update3, shape3speed*100);
@@ -91,8 +99,17 @@ public class MainActivity extends AppCompatActivity {
             handler.removeCallbacks(update2);
             handler.removeCallbacks(update3);
             if (counter1==counter2 && counter2 == counter3) {
-                outputPoints.setText("50");
+                Toast.makeText(this, "You won 50pts", Toast.LENGTH_LONG).show();
+                x+=50;
             }
+            else if (counter1==0 || counter2==0 || counter3==0) {
+                Toast.makeText(this, "You won 10pts", Toast.LENGTH_LONG).show();
+                x+=10;
+            }
+            outputPoints.setText(x+"");
+            System.out.println(counter1);
+            System.out.println(counter2);
+            System.out.println(counter3);
             stopped=true;
         }
 
@@ -103,12 +120,12 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void run() {
             if (counter1<3) {
-                shape1.setImageDrawable(getResources().getDrawable(images[counter1]));
                 counter1+=1;
+                shape1.setImageDrawable(getResources().getDrawable(images[counter1]));
             }
             else {
-                shape1.setImageDrawable(getResources().getDrawable(images[0]));
                 counter1=0;
+                shape1.setImageDrawable(getResources().getDrawable(images[0]));
             }
             handler.postDelayed(update1, shape1speed*100);
         }
@@ -119,12 +136,12 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void run() {
             if (counter2<3) {
-                shape2.setImageDrawable(getResources().getDrawable(images[counter2]));
                 counter2+=1;
+                shape2.setImageDrawable(getResources().getDrawable(images[counter2]));
             }
             else {
-                shape2.setImageDrawable(getResources().getDrawable(images[0]));
                 counter2=0;
+                shape2.setImageDrawable(getResources().getDrawable(images[0]));
             }
             handler.postDelayed(update2, shape2speed*100);
         }
@@ -135,12 +152,12 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void run() {
             if (counter3<3) {
-                shape3.setImageDrawable(getResources().getDrawable(images[counter3]));
                 counter3+=1;
+                shape3.setImageDrawable(getResources().getDrawable(images[counter3]));
             }
             else {
-                shape3.setImageDrawable(getResources().getDrawable(images[0]));
                 counter3=0;
+                shape3.setImageDrawable(getResources().getDrawable(images[0]));
             }
             handler.postDelayed(update3, shape3speed*100);
         }
