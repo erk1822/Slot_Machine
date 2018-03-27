@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:layout_margin="20dp">
+
+    <TextView
+        android:id="@+id/rules"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Rules:"
+        android:textSize="30sp"
+        />
+    <TextView
+        android:id="@+id/directions"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="If all fruits match, you win 50pts. If you land on a cherry, you win 10pts."
+        android:textSize="30sp"
+        android:layout_below="@id/rules"
+        />
+
+    <LinearLayout
+        android:id="@+id/output_points"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@+id/directions"
+        android:paddingTop="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Current Points: "
+            android:textSize="30sp"
+            android:paddingRight="40dp"/>
+
+        <TextView
+            android:id="@+id/outputPoints"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textSize="30sp" />
+
+    </LinearLayout>
+
+
+</RelativeLayout>

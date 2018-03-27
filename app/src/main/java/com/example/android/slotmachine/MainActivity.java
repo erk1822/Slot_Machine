@@ -1,5 +1,6 @@
 package com.example.android.slotmachine;
 
+import android.content.Intent;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -76,11 +77,24 @@ public class MainActivity extends AppCompatActivity {
                 }
         );
 
+
         shape1.setImageDrawable(getResources().getDrawable(images[0]));
         shape2.setImageDrawable(getResources().getDrawable(images[1]));
         shape3.setImageDrawable(getResources().getDrawable(images[2]));
 
+        if (savedInstanceState !=null) {
+            outputPoints.setText(savedInstanceState.getString("Points"));
+            x=Integer.parseInt(outputPoints.getText().toString());
+        }
+
     }
+
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        super.onSaveInstanceState(savedInstanceState);
+        savedInstanceState.putString("Points", outputPoints.getText().toString());
+    }
+
 
     public void startButtonPressed(View v) {
         if (stopped==true) {
@@ -113,6 +127,12 @@ public class MainActivity extends AppCompatActivity {
             stopped=true;
         }
 
+    }
+
+    public void rulesButtonPressed (View v) {
+        Intent i = new Intent(this, DirectionsActivity.class);
+        i.putExtra("POINTS", x);
+        startActivity(i);
     }
 
     private class Update1 implements Runnable {
